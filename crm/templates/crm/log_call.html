@@ -1,0 +1,10 @@
+{% extends "crm/base.html" %} {% block title %}Log Call{% endblock %} {% block
+content %}
+<h2>Log a Call for {{ customer.name }}</h2>
+<form method="POST">
+  {% csrf_token %}
+  <label for="call_notes">Call Notes:</label>
+  <textarea name="call_notes" required></textarea>
+  <button type="submit">Save Call</button>
+</form>
+{% endblock %}

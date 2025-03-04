@@ -1,0 +1,58 @@
+{% extends 'crm/base.html' %} {% block content %}
+<h2>Customer List</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Phone</th>
+    <th>Email</th>
+    <th>Status</th>
+    <th>Actions</th>
+  </tr>
+
+  {% for customer in customers %}
+  <tr>
+    <td>{{ customer.name }}</td>
+    <td>{{ customer.phone }}</td>
+    <td>{{ customer.email }}</td>
+    <td>{{ customer.get_status_display }}</td>
+
+    <td>
+      <a href="{% url 'log_call' customer.id %}">Log Call</a>
+
+      {% if customer.status == "new" %} |
+      <a href="{% url 'update_status' customer.id 'followup1' %}"
+        >Move to Follow-up 1</a
+      >
+      |
+      <a href="{% url 'update_status' customer.id 'not_interested' %}"
+        >Mark as Not Interested</a
+      >
+      {% endif %} {% if customer.status == "followup1" %} |
+      <a href="{% url 'update_status' customer.id 'followup2' %}"
+        >Move to Follow-up 2</a
+      >
+      |
+      <a href="{% url 'update_status' customer.id 'not_interested' %}"
+        >Mark as Not Interested</a
+      >
+      {% endif %} {% if customer.status == "followup2" %} |
+      <a href="{% url 'update_status' customer.id 'not_interested' %}"
+        >Mark as Not Interested</a
+      >
+      {% endif %}
+    </td>
+  </tr>
+  {% empty %}
+  <tr>
+    <td colspan="5">No customers found.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="{% url 'add_customer' %}">Add New Customer</a>
+<a href="{% url 'download_dar' %}" class="btn btn-primary"
+  >Download DAR Report</a
+>
+
+{% endblock %}

@@ -1,0 +1,13 @@
+<h2>CRM Dashboard</h2>
+<a href="{% url 'add_customer' %}">Add New Customer</a>
+<table>
+    <tr><th>Name</th><th>Contact</th><th>Status</th></tr>
+    {% for customer in customers %}
+    <tr>
+        <td>{{ customer.name }}</td>
+        <td>{{ customer.contact }}</td>
+        <td>{{ customer.status }}</td>
+        <td><a href="{% url 'update_status' customer.id %}">Update Status</a></td>
+    </tr>
+    {% endfor %}
+</table>

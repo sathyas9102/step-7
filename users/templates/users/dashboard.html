@@ -1,0 +1,38 @@
+{% comment %}
+<h2>📌 Payment Details</h2>
+
+<table border="1">
+  <tr>
+    <th>Customer Name</th>
+    <th>Amount (₹)</th>
+    <th>Due Date</th>
+    <th>Status</th>
+    <th>Days Left</th>
+  </tr>
+
+  {% for payment in upcoming_payments %}
+  <tr>
+    <td>{{ payment.customer.name }}</td>
+    <td>{{ payment.amount }}</td>
+    <td>{{ payment.due_date }}</td>
+    <td>{% if payment.is_paid %} ✅ Paid {% else %} 🔴 Pending {% endif %}</td>
+    <td>{{ payment.days_left }}</td>
+  </tr>
+  {% endfor %}
+</table>
+
+{% if overdue_payments %}
+<script>
+  alert("🚨 Payment Due! Some customers have overdue payments.");
+</script>
+{% endif %} {% endcomment %} {% extends 'base.html' %} {% block content %}
+<div class="container">
+  <h2>CRM Dashboard</h2>
+  <p>Welcome to the CRM system.</p>
+  <ul>
+    <li><a href="#">Manage Customers</a></li>
+    <li><a href="#">View Reports</a></li>
+    <li><a href="#">Invoices</a></li>
+  </ul>
+</div>
+{% endblock %}

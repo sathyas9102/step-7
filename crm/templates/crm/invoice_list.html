@@ -1,0 +1,24 @@
+{% extends 'crm/base.html' %} {% block content %}
+<h2>Invoice Database</h2>
+<a href="{% url 'request_invoice' %}">➕ Request Invoice</a>
+<table border="1">
+  <tr>
+    <th>Customer</th>
+    <th>Amount</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  {% for invoice in invoices %}
+  <tr>
+    <td>{{ invoice.customer.name }}</td>
+    <td>₹{{ invoice.amount }}</td>
+    <td>{{ invoice.status }}</td>
+    <td>
+      {% if invoice.status == "Pending" %}
+      <a href="{% url 'approve_invoice' invoice.id %}">Approve</a>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

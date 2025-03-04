@@ -1,0 +1,14 @@
+<h2>Invoice Dashboard</h2>
+<table>
+    <tr><th>Customer</th><th>Amount</th><th>Status</th></tr>
+    {% for invoice in invoices %}
+    <tr>
+        <td>{{ invoice.customer.name }}</td>
+        <td>{{ invoice.amount }}</td>
+        <td>{{ invoice.status }}</td>
+        {% if invoice.status == "pending" %}
+        <td><a href="{% url 'approve_invoice' invoice.id %}">Approve</a></td>
+        {% endif %}
+    </tr>
+    {% endfor %}
+</table>

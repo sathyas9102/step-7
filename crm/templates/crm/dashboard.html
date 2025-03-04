@@ -1,0 +1,7 @@
+{% extends 'crm/base.html' %} {% block content %}
+<h2>CRM Dashboard</h2>
+<ul>
+  <li><a href="{% url 'customer_list' %}">CRM Database</a></li>
+  <li><a href="{% url 'invoice_list' %}">Invoice Database</a></li>
+</ul>
+{% endblock %}

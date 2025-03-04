@@ -1,0 +1,19 @@
+{% extends 'crm/base.html' %} {% block content %}
+<h2>Payment Tracking</h2>
+<table border="1">
+  <tr>
+    <th>Customer</th>
+    <th>Amount</th>
+    <th>Invoice Date</th>
+    <th>Due Date</th>
+  </tr>
+  {% for invoice in invoices %}
+  <tr>
+    <td>{{ invoice.customer.name }}</td>
+    <td>₹{{ invoice.amount }}</td>
+    <td>{{ invoice.invoice_date }}</td>
+    <td>{{ invoice.due_date }}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
